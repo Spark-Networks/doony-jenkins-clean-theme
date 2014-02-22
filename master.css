@@ -302,15 +302,6 @@ th.pane, tr.build-row > th {
     text-indent: 3px;
 }
 
-button {
-    color: #505050 !important;
-    -webkit-border-radius: 5px !important;
-    -moz-border-radius: 5px !important;
-    border-radius: 5px !important;
-    background: #F0F0F0 !important;
-    outline: none !important;
-}
-
 .section-header, label {
     color: #1d1d1d !important;
 }
@@ -457,6 +448,20 @@ img[src*="progress-unknown.gif"], img[src*="progress-unknown-red.gif"] {
     height: 10px;
 }
 
+img[src*="diskusage16.png"] {
+    margin-left: -12px;
+}
+
+img[src*="48x48/folder.png"] {
+    width: 32px;
+    height: 32px;
+}
+
+img[src*="48x48/notepad.png"] {
+    width: 32px;
+    height: 32px;
+}
+
 .build-health-icon {
     padding: 0px;
 }
@@ -511,6 +516,9 @@ textarea {
 
 .setting-input {
     width: 95%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
 }
 
 /*
@@ -1169,4 +1177,20 @@ input[type="button"].btn-block {
 .doony-theme {
   color: grey;
   margin-right: 10px;
+}
+#description-image {
+    padding-right: 5px;
+}
+.yui-skin-sam .phing-target {
+  font-weight: bold;
+  color: #0ABFBC;
+}
+
+.yui-skin-sam .phing-outcome-finished {
+  color: #C7FCD7;
+}
+
+/* Remove the bouncy balls */
+#buildHistory img[src*="anime.gif"] {
+  visibility: hidden;
 }

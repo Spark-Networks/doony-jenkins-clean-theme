@@ -1,6 +1,3 @@
-
-
-
 /*
  * ProgressCircle.js
  * http://qiao.github.io/ProgressCircle.js/
@@ -418,7 +415,7 @@
             return redirectForUrl(jobUrl, buildNumber);
         }
     };
-/*
+
     var showButterBar = function(message, alert) {
         var div = document.createElement('div');
         div.className = 'alert doony-alert ' + alert;
@@ -441,7 +438,7 @@
             return replaced;
         });
     });
-*/
+
     // build a callout
     var getCallout = function(message, href) {
         return "<div class='doony-callout doony-callout-info'><a " +
@@ -488,6 +485,97 @@
         }, 50);
     }
 
+    // Replace the floaty ball with a better icon
+    // XXX make the icon really good
+    var replaceFloatyBall = function(selector, type) {
+        $(selector).each(function() {
+            var wrapper = document.createElement('div');
+            wrapper.className = 'doony-circle doony-circle-' + type;
+            wrapper.style.display = 'inline-block';
+            var dimension;
+            if (this.getAttribute('width') === "48" || this.getAttribute('width') === "24") {
+                // an overly large ball is scary
+                dimension = this.getAttribute('width') * 0.5 + 8;
+                wrapper.style.marginRight = "15px";
+                wrapper.style.verticalAlign = "middle";
+            // XXX hack, this is for the main page job list
+            } else if (this.classList.contains("icon32x32")) {
+                dimension = 24;
+                wrapper.style.marginTop = "4px";
+                wrapper.style.marginLeft = "4px";
+            } else {
+                dimension = this.getAttribute('width') || 12;
+            }
+            $(wrapper).css('width', dimension);
+            $(wrapper).css('height', dimension);
+
+            $(this).after(wrapper).remove();
+        });
+    };
+
+    var replaceBouncingFloatyBall = function(selector, color) {
+        $(selector).each(function() {
+
+            if ($(this).next(".doony-canvas").length) {
+                return;
+            }
+            var canvas = document.createElement('canvas');
+            canvas.className = 'doony-canvas';
+
+            // 48 -> dimension 32.
+            // radius should be 12, plus 4 width
+            // 16 -> dimension 16, radius 4
+            var dimension;
+            if (this.getAttribute('width') === "48" || this.getAttribute('width') === "24") {
+                // an overly large ball is scary
+                dimension = this.getAttribute('width') * 0.5 + 8;
+                canvas.style.marginRight = "15px";
+                canvas.style.verticalAlign = "middle";
+            // XXX hack, this is for the main page job list
+            } else if (this.classList.contains("icon32x32")) {
+                dimension = 24;
+                canvas.style.marginTop = "4px";
+                canvas.style.marginLeft = "4px";
+            } else {
+                dimension = this.getAttribute('width') || 12;
+            }
+            canvas.setAttribute('width', dimension);
+            canvas.setAttribute('height', dimension);
+
+            var circle = new ProgressCircle({
+                canvas: canvas,
+                minRadius: dimension * 3 / 8 - 2,
+                arcWidth: dimension / 8 + 1
+            });
+
+            var x = 0;
+            circle.addEntry({
+                fillColor: color,
+                progressListener: function() {
+                    if (x >= 1) { x = 0; }
+                    x = x + 0.005;
+                    return x; // between 0 and 1
+                },
+            });
+            // jenkins does ajax every 5 seconds, this should time it perfectly
+            circle.start(24);
+            $(this).after(canvas).css('display', 'none');
+        });
+    };
+
+    var green = '#4f9f4f';
+    setInterval(function() {
+        replaceBouncingFloatyBall("img[src*='red_anime.gif']", '#d9534f');
+        replaceBouncingFloatyBall("img[src*='blue_anime.gif']", green);
+        replaceBouncingFloatyBall("img[src*='grey_anime.gif']", '#999');
+        replaceBouncingFloatyBall("img[src*='yellow_anime.gif']", '#f0ad4e');
+    }, 10);
+    setInterval(function() {
+        replaceFloatyBall("img[src*='/grey.png']", "aborted");
+        replaceFloatyBall("img[src*='/blue.png']", "success");
+        replaceFloatyBall("img[src*='/red.png']", "failure");
+        replaceFloatyBall("img[src*='/yellow.png']", "warning");
+    }, 10);
 
     if (isJobHomepage(window.location.pathname)) {
         var jobUrl = getJobUrl(window.location.pathname);
@@ -552,5 +640,7 @@
         }
     }
 
-    
+    $("#l10n-footer").after("<span class='doony-theme'>Browsing Jenkins with " +
+        "the <a target='_blank' href='https://github.com/kevinburke/doony'>" +
+        "Doony theme</a></span>");
 });
