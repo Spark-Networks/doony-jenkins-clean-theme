@@ -1,7 +1,6 @@
-# Doony Clean Theme
-=================
+# Doony Jenkins Clean Theme
 
-This is a Jenkins CI theme that was forked from [jenkins-clean-theme](https://github.com/Dakota628/jenkins-clean-theme), then fused with [Doony's](https://github.com/kevinburke/doony) theme javascript & some of it's styles to become what it is...
+This is a Jenkins CI theme that was forked from [jenkins-clean-theme](https://github.com/Dakota628/jenkins-clean-theme), then fused with [Doony's](https://github.com/kevinburke/doony) theme javascript & some of it's styles to become what it is... Doony Jenkins Clean
 
 =================
 <img src="http://doony.org/logosmall.png" alt="Doony logo" />
@@ -69,9 +68,8 @@ the default Jenkins styles.
 
     You can use these URL's:
 
-        - https://cdnjs.cloudflare.com/ajax/libs/doony/1.1/js/doony.min.js
-        - https://cdnjs.cloudflare.com/ajax/libs/doony/1.1/css/doony.min.css
-
+        - https://rawgithub.com/sgraham785/doony-jenkins-clean-theme/master/doony-clean.js
+        - https://rawgithub.com/sgraham785/doony-jenkins-clean-theme/master/master.css
     Alternatively you can let Jenkins self host these files by putting them in `~/.jenkins/userContent`
     With the default Jenkins settings the files you use will then be:
 

@@ -533,6 +533,6 @@
     }
 
     $("#l10n-footer").after("<span class='doony-theme'>Browsing Jenkins with " +
-        "the <a target='_blank' href='https://github.com/sgraham785/doony-clean-theme'>" +
-        "Doony Clean Theme</a></span>");
+        "the <a target='_blank' href='https://github.com/sgraham785/doony-jenkins-clean-theme'>" +
+        "Doony Jenkins Clean Theme</a></span>");
 });
