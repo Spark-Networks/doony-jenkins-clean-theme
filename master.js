@@ -46,7 +46,7 @@ $jq(document).scroll(function() {
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-(function(window, document, undefined) {
+$jq(function(window, document, undefined) {
 
     /**
      * Find the absolute position of an element
@@ -344,7 +344,7 @@ $jq(document).scroll(function() {
 
 })(window, document);
 
-;jQuery(function($) {
+$jq(function($) {
 
     var colors = [
         '#C02942', // a red
