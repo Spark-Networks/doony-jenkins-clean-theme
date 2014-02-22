@@ -461,6 +461,10 @@ img[src*="48x48/notepad.png"] {
     width: 32px;
     height: 32px;
 }
+img[src*="48x48/blue.png"] {
+    width: 32px;
+    height: 32px;
+}
 
 .build-health-icon {
     padding: 0px;
