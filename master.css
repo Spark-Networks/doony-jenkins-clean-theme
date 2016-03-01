@@ -286,7 +286,7 @@ td.pane:first-of-type, tr.build-row > td:first-of-type, th.pane:first-of-type {
 }
 
 form {
-    clear: both;
+    /* clear: both; */
 }
 
 .pane-header, .pane-header > a {
